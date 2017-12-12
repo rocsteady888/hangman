@@ -12,7 +12,6 @@ var hangman = {
 		"nectarine", 
 		"blueberry"
 	],
-	letters: []
 }
 
 // Get a random word from the array when Start button is clicked.
@@ -20,25 +19,52 @@ function randomIndex() {
 	//random number to get index of word in hangman object
 	var randNum = Math.floor((Math.random() * hangman.words.length));
 
+	var letters = [];
+
+	//reset word
+	document.getElementById("demo").innerHTML = ""; 
 
 	// append new value to the array
-	// letters.push("Hola");
-	console.log(hangman.letters);
+	// use random word from array and write each letter to id='demo'
 	var s = hangman.words[randNum];
 	for (var i = 0; i < s.length; i++) {
-    hangman.letters.push(s.charAt(i));
+    letters.push(s.charAt(i));
+	document.getElementById("demo").innerHTML = document.getElementById("demo").innerHTML + " ___ "; 
     console.log(s.charAt(i));
 	}
 
-	
-    document.getElementById("randomWord").innerHTML = hangman.letters;
-
-	console.log(hangman.letters);
+	// for testing only
+	console.log(letters);
 	console.log(hangman.words[randNum]);
 	console.log("*-*-*-*-*-*");
-
 }
 
+// OnClick function
+// function check() {
+// 	var guess = this.innerHTML;
+// 	console.log(guess);
+	// this.setAttribute("class", "active");
+	// this.onclick = null;
+	// for (var i = 0; i < word.length; i++) {
+	// 	if (word[i] === geuss) {
+	// 	guesses[i].innerHTML = guess;
+	// 	counter += 1;
+	// 	} 
+	// }
+	// var j = (word.indexOf(guess));
+	// 	if (j === -1) {
+	// 	lives -= 1;
+	// 	comments();
+	// 	animate();
+	// 	} else {
+	// 	comments();
+	// 	}
+// }
+
+function check() {
+	var guess = this.innerHTML;
+	console.log(guess);
+}
 
 // user inputs a letter
 // check to see if input is in string
