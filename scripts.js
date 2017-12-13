@@ -15,7 +15,7 @@ var hangman = {
 }
 
 // Get a random word from the array when Start button is clicked.
-function randomIndex() {
+function start() {
 	//random number to get index of word in hangman object
 	var randNum = Math.floor((Math.random() * hangman.words.length));
 
@@ -33,41 +33,31 @@ function randomIndex() {
     console.log(s.charAt(i));
 	}
 
+	//user's guess
+	document.onkeyup = function(event) {
+
+		// Determines which key was pressed.
+		// check each index in the array if it matches do while
+		var userGuess = event.key;
+		console.log(userGuess);
+		for (var i = 0; i < scope.names.length; i++) {
+		    if (scope.names[i].indexOf(keyValue) === -1) {
+		        searchHits.style.display = 'none';
+		    }
+		}
+	}
+
 	// for testing only
 	console.log(letters);
 	console.log(hangman.words[randNum]);
 	console.log("*-*-*-*-*-*");
 }
 
-// OnClick function
-// function check() {
-// 	var guess = this.innerHTML;
-// 	console.log(guess);
-	// this.setAttribute("class", "active");
-	// this.onclick = null;
-	// for (var i = 0; i < word.length; i++) {
-	// 	if (word[i] === geuss) {
-	// 	guesses[i].innerHTML = guess;
-	// 	counter += 1;
-	// 	} 
-	// }
-	// var j = (word.indexOf(guess));
-	// 	if (j === -1) {
-	// 	lives -= 1;
-	// 	comments();
-	// 	animate();
-	// 	} else {
-	// 	comments();
-	// 	}
-// }
-
-function check() {
-	var guess = this.innerHTML;
-	console.log(guess);
-}
-
 // user inputs a letter
 // check to see if input is in string
+
+
+
 // if correct, fill into area, if incorrect add to hangman
 // document.getElementById("guessedLetters").innerHTML = keypressed()
 
