@@ -1,4 +1,3 @@
-
 var hangman = {
 	guesses: 0,
 	wins: 0,
@@ -14,24 +13,25 @@ var hangman = {
 	],
 }
 
+var answerDisplay = [];
+var guessedLetters = [];
+
 // Get a random word from the array when Start button is clicked.
 function start() {
 	//random number to get index of word in hangman object
-	var randNum = Math.floor((Math.random() * hangman.words.length));
-
-	var letters = [];
+	var randWord = hangman.words[Math.floor((Math.random() * hangman.words.length))];
 
 	//reset word
 	document.getElementById("demo").innerHTML = ""; 
 
 	// append new value to the array
 	// use random word from array and write each letter to id='demo'
-	var s = hangman.words[randNum];
-	for (var i = 0; i < s.length; i++) {
-    letters.push(s.charAt(i));
-	document.getElementById("demo").innerHTML = document.getElementById("demo").innerHTML + " ___ "; 
-    console.log(s.charAt(i));
+
+	for (var i = 0; i < randWord.length; i++) {
+    	answerDisplay[i] = " ___ ";
+    	document.getElementById("demo").innerHTML = document.getElementById("demo").innerHTML + answerDisplay[i];
 	}
+
 
 	//user's guess
 	document.onkeyup = function(event) {
@@ -40,18 +40,27 @@ function start() {
 		// check each index in the array if it matches do while
 		var userGuess = event.key;
 		console.log(userGuess);
-		for (var i = 0; i < scope.names.length; i++) {
-		    if (scope.names[i].indexOf(keyValue) === -1) {
-		        searchHits.style.display = 'none';
+		document.getElementById("demo").innerHTML = "";
+		for (var i = 0; i < randWord.length; i++) {
+			if (randWord[i] === userGuess) {
+		    	answerDisplay[i] = userGuess;
+		    	document.getElementById("demo").innerHTML = document.getElementById("demo").innerHTML + answerDisplay[i];
+		    } else {
+		    	document.getElementById("demo").innerHTML = document.getElementById("demo").innerHTML + answerDisplay[i];
 		    }
 		}
 	}
 
 	// for testing only
-	console.log(letters);
-	console.log(hangman.words[randNum]);
+	console.log(randWord);
 	console.log("*-*-*-*-*-*");
 }
+
+
+//
+// blank letter array
+
+
 
 // user inputs a letter
 // check to see if input is in string
